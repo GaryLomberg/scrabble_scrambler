@@ -1,0 +1,9 @@
+apple
+bear
+cat
+deer
+elephant
+fig
+gear
+hoop
+intern
