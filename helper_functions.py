@@ -11,18 +11,19 @@ def sentence_scrambler(sentence, words_by_length):
     
     sentence_list = sentence.split()
     new_sentence_list = []
-    error_string = "Incompatible sentence / dictionary combination, please try again..."
     
     for word in sentence_list:
         first_letter = word[0]
         length = len(word)
         letter = words_by_length.get(first_letter)
         if not letter:
-            return error_string
+            new_sentence_list.append(word)
+            continue
 
         word_options = letter.get(length)
         if not word_options:
-            return error_string
+            new_sentence_list.append(word)
+            continue
 
         random_word = word_options[random.randint(0, len(word_options) -1)]
         new_sentence_list.append(random_word)
