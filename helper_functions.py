@@ -3,6 +3,12 @@ from string import ascii_lowercase
 
 
 def sentence_scrambler(sentence, words_by_length):
+    """
+    Step through each word in the sentence
+    Use the word length map to find the list of words with matching length
+    If found, add a random entry of matching length to the new sentence list
+    """
+    
     sentence_list = sentence.split()
     new_sentence_list = []
     error_string = "Incompatible sentence / dictionary combination, please try again..."
@@ -25,6 +31,13 @@ def sentence_scrambler(sentence, words_by_length):
 
 
 def dictionary_to_word_length_map(dictionary):
+    """
+    Take a dictionary file as an argument
+    Read the file and organise words by letter
+    Thereafter organise words by count under each letter
+    This is done for efficient lookup
+    """
+    
     words = []
     with open(dictionary) as d_file:
         words = d_file.read().splitlines()

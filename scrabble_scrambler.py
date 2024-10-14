@@ -3,7 +3,11 @@ from helper_functions import sentence_scrambler, dictionary_to_word_length_map
 
 print("Welcome to scrabble scrambler!", end="\n\n")
 
+# create list of text files in the cwd
+# with the assumption that the file is a dictionary
 dictionaries = [f for f in Path().glob("*.txt")]
+
+# quit the script if no dictionaries found in the folder
 if not dictionaries:
     print("---")
     print("Please place the text files you'd like to use as dictionaries into the current directory.")
@@ -11,6 +15,7 @@ if not dictionaries:
     print("---", end="\n\n")
     quit()
 
+# allow the user to select a dictionary if multiple are in the folder
 selected_dictionary = None
 if len(dictionaries) > 1:
     dictionary_range = list(range(0, len(dictionaries)))
@@ -26,7 +31,11 @@ else:
 
 dictionary = dictionaries[selected_dictionary]
 words_by_length = dictionary_to_word_length_map(dictionary)
-        
+# Nice To Have: save the words_by_length data structure to a pickle file for next time
+# The speed of processing at current dictionary size, means the process saving would
+# be negligable though
+
+# Main loop for  getting user sentence
 sentence = ""
 while True:
     sentence = input("Please input the sentence you'd like to convert ('_q to exit'): ")
@@ -34,6 +43,7 @@ while True:
         break
     
     print(sentence_scrambler(sentence, words_by_length), end="\n\n")
+    # sentence_scrambler function description in docstring
 
 print("---")    
 print("Thanks for using Scrabble Scrambler")
